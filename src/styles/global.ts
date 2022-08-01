@@ -17,9 +17,6 @@ export const GlobalStyle = createGlobalStyle`
       background: ${theme.background};
       color: ${theme['gray-700']};
     `};
-    max-width: 90rem;
-    margin: 0 auto;
-    padding: 0 10rem;
     -webkit-font-smoothing: antialiased;
   }
 

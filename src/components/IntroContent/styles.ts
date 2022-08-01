@@ -8,10 +8,9 @@ export const IntroContentContainer = styled.section`
 
 export const HeaderContainer = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: flex-start;
-  min-width: 36.75rem;
+  width: 52%;
 
   h1 {
     font-family: 'Baloo 2', cursive;
@@ -36,7 +35,7 @@ export const HeaderContainer = styled.div`
 
 export const ImageContainer = styled.div`
   display: flex;
-  flex: 1;
+  width: 48%;
 
   img {
     width: 100%;
@@ -52,8 +51,6 @@ export const IconsListContainer = styled.ul`
   column-gap: 2.5rem;
   align-items: center;
   margin-top: 4.125rem;
-
-  width: 567px;
 
   li {
     flex: 1;
