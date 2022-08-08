@@ -24,5 +24,10 @@ export const CoffeeQuantityContainer = styled.div`
     color: ${({ theme }) => theme['purple-500']};
 
     cursor: pointer;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      color: ${({ theme }) => theme['purple-700']};
+    }
   }
 `

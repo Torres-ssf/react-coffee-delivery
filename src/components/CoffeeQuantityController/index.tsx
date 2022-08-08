@@ -1,26 +1,31 @@
 import { Minus, Plus } from 'phosphor-react'
-import { useState } from 'react'
 import { CoffeeQuantityContainer } from './styles'
 
-export function CoffeeQuantityController() {
-  const [quantity, setQuantity] = useState(0)
+interface ICartItemProps {
+  quantity: number
+  onIncreaseQuantity: () => void
+  onDecreaseQuantity: () => void
+}
+
+export function CoffeeQuantityController(props: ICartItemProps) {
+  const { quantity, onIncreaseQuantity, onDecreaseQuantity } = props
 
   function handleIncreaseQuantity() {
-    setQuantity(quantity + 1)
+    onIncreaseQuantity()
   }
 
   function handleDecreaseQuantity() {
-    setQuantity(quantity - 1)
+    onDecreaseQuantity()
   }
 
   return (
     <CoffeeQuantityContainer>
       <button type="button" onClick={handleDecreaseQuantity}>
-        <Minus size={14} />
+        <Minus size={14} weight="bold" />
       </button>
       {quantity}
       <button type="button" onClick={handleIncreaseQuantity}>
-        <Plus size={14} />
+        <Plus size={14} weight="bold" />
       </button>
     </CoffeeQuantityContainer>
   )
