@@ -81,11 +81,15 @@ export const AddressInput = styled.input`
 
   padding: 0.75rem;
 
-  color: ${({ theme }) => theme['gray-600']};
+  color: ${({ theme }) => theme['gray-700']};
   font-size: 0.875rem;
-  line-height: 130%;
+  line-height: 1.1375rem;
 
   background: ${({ theme }) => theme['gray-300']};
+
+  &::placeholder {
+    color: ${({ theme }) => theme['gray-600']};
+  }
 `
 
 export const AddressInputZipCode = styled(AddressInput)`
@@ -150,11 +154,18 @@ export const RadioInputLabel = styled.label<IRadioInputLabelProps>`
   text-transform: uppercase;
   cursor: pointer;
 
-  box-shadow: ${({ isChecked, theme }) =>
-    isChecked ? css`0 0 0 2px ${theme['yellow-500']}` : 'none'};
+  transition: 0.2s ease-in-out;
+
+  ${({ isChecked, theme }) =>
+    isChecked
+      ? css`
+          background: ${theme['purple-300']};
+          box-shadow: 0 0 0 2px ${theme['purple-500']};
+        `
+      : ''};
 
   &:hover {
-    opacity: 0.7;
+    background: ${({ theme }) => theme['gray-500']};
   }
 
   input[type='radio'] {
@@ -195,6 +206,16 @@ export const TotalPriceContainer = styled.div`
     }
   }
 `
+
+export const CartIsEmptyContainer = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1rem;
+  line-height: 1.625rem;
+`
+
 export const ConfirmOrderButton = styled.button`
   display: flex;
   justify-content: center;
@@ -215,8 +236,14 @@ export const ConfirmOrderButton = styled.button`
 
   background: ${({ theme }) => theme['yellow-500']};
   cursor: pointer;
+  transition: 0.2s ease-in-out;
 
-  &:hover {
+  &:enabled:hover {
+    background: ${({ theme }) => theme['yellow-700']};
+  }
+
+  &:disabled {
     opacity: 0.7;
+    cursor: not-allowed;
   }
 `

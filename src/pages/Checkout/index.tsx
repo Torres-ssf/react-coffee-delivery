@@ -18,6 +18,7 @@ import {
   CartForm,
   TotalPriceContainer,
   ConfirmOrderButton,
+  CartIsEmptyContainer,
 } from './styles'
 
 import {
@@ -28,11 +29,29 @@ import {
   Money,
 } from 'phosphor-react'
 import { defaultTheme } from '../../styles/themes/default'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { CartItem } from '../../components/CartItem'
+import { CoffeeContext } from '../../context/CoffeeContext'
 
 export function Checkout() {
   const [selectedPayment, setSelectedPayment] = useState('')
+
+  const { cart } = useContext(CoffeeContext)
+
+  const isCartEmpty = cart.length === 0
+
+  const totalInItems = cart.reduce((acc, item) => {
+    return acc + item.quantity * item.coffee.price
+  }, 0)
+
+  const deliveryPrice = 3.5
+
+  const totalPrice = totalInItems + deliveryPrice
+
+  const valueFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
 
   function handleChange(e: any) {
     setSelectedPayment(e.target.value)
@@ -119,24 +138,34 @@ export function Checkout() {
       <CartContainer>
         <h2>Selected Coffees</h2>
         <CartForm>
-          <CartItem />
-          <CartItem />
+          {cart.map(item => (
+            <CartItem key={item.coffee.id} {...item} />
+          ))}
+
           <TotalPriceContainer>
-            <div>
-              <span>Total in items</span>
-              <span>$ 29,20</span>
-            </div>
-            <div>
-              <span>Delivery</span>
-              <span>$ 3,50</span>
-            </div>
-            <div>
-              <strong>Total</strong>
-              <strong>$ 33,00</strong>
-            </div>
+            {!isCartEmpty ? (
+              <>
+                <div>
+                  <span>Total in items</span>
+                  <span>{valueFormatter.format(totalInItems)}</span>
+                </div>
+                <div>
+                  <span>Delivery</span>
+                  <span>{valueFormatter.format(deliveryPrice)}</span>
+                </div>
+                <div>
+                  <strong>Total</strong>
+                  <strong>{valueFormatter.format(totalPrice)}</strong>
+                </div>
+              </>
+            ) : (
+              <CartIsEmptyContainer>Your cart is empty</CartIsEmptyContainer>
+            )}
           </TotalPriceContainer>
 
-          <ConfirmOrderButton>Confirm Order</ConfirmOrderButton>
+          <ConfirmOrderButton disabled={isCartEmpty} type="button">
+            Confirm Order
+          </ConfirmOrderButton>
         </CartForm>
       </CartContainer>
     </CheckoutContainer>
