@@ -1,25 +1,39 @@
-import { HeaderContainer, LocationNavLink, ShoppingCartNavLink } from './styles'
+import {
+  HeaderContainer,
+  LocationNavLink,
+  LogoLink,
+  ShoppingCartNavLink,
+} from './styles'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 
 import logo from '../../assets/logo.svg'
 import { defaultTheme } from '../../styles/themes/default'
+import { useContext } from 'react'
+import { CoffeeContext } from '../../context/CoffeeContext'
 
 export function Header() {
+  const { cart } = useContext(CoffeeContext)
+
+  const itemsCount = cart.reduce((acc, { quantity }) => acc + quantity, 0)
+
   return (
     <HeaderContainer>
-      <img src={logo} alt="App logo" />
+      <LogoLink to="/">
+        <img src={logo} alt="App logo" />
+      </LogoLink>
+
       <nav>
-        <LocationNavLink href="#">
+        <LocationNavLink to="#">
           <MapPin size={22} color={defaultTheme['purple-500']} weight="fill" />
           Sacramento, CA
         </LocationNavLink>
-        <ShoppingCartNavLink>
+        <ShoppingCartNavLink to="/checkout">
           <ShoppingCart
             size={22}
             color={defaultTheme['yellow-700']}
             weight="fill"
           />
-          <span>3</span>
+          {itemsCount > 0 && <span>{itemsCount}</span>}
         </ShoppingCartNavLink>
       </nav>
     </HeaderContainer>
