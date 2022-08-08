@@ -1,101 +1,115 @@
 {
   "coffees": [
     {
+      "id": "1",
       "description": "The traditional coffee made with hot water and ground beans",
       "name": "traditional espresso",
       "image": "src/assets/coffee-images/espresso.png",
-      "price": "9,90",
+      "price": 9.99,
       "tags": ["traditional"]
     },
     {
+      "id": "2",
       "description": "Diluted espresso, less intense than traditional",
       "name": "american espresso",
       "image": "src/assets/coffee-images/american.png",
-      "price": "9,90",
+      "price": 9.90,
       "tags": ["traditional"]
     },
     {
+      "id": "3",
       "description": "Traditional espresso with creamy foam",
       "name": "creamy espresso",
       "image": "src/assets/coffee-images/creamy-espresso.png",
-      "price": "11,90",
+      "price": 11.90,
       "tags": ["traditional"]
     },
     {
+      "id": "4",
       "description": "Prepared with espresso coffee and ice cubes",
       "name": "iced espresso",
       "image": "src/assets/coffee-images/iced-espresso.png",
-      "price": "10,90",
+      "price": 10.90,
       "tags": ["traditional", "cold"]
     },
     {
+      "id": "5",
       "description": "Half traditional and half espresso with steamed milk",
       "name": "coffee with milk",
       "image": "src/assets/coffee-images/coffee-with-milk.png",
-      "price": "9,90",
+      "price": 9.90,
       "tags": ["traditional", "with milk"]
     },
     {
+      "id": "6",
       "description": "A shot of espresso with twice the milk and creamy foam",
       "name": "latte",
       "image": "src/assets/coffee-images/latte.png",
-      "price": "12,90",
+      "price": 12.90,
       "tags": ["traditional", "with milk"]
     },
     {
+      "id": "7",
       "description": "Cinnamon drink made from equal doses of coffee, milk and foam",
       "name": "capuccino",
       "image": "src/assets/coffee-images/capuccino.png",
-      "price": "13,90",
+      "price": 13.90,
       "tags": ["traditional", "with milk"]
     },
     {
+      "id": "8",
       "description": "Hot espresso with a little milk",
       "name": "macchiato",
       "image": "src/assets/coffee-images/macchiato.png",
-      "price": "13,90",
+      "price": 13.90,
       "tags": ["traditional", "with milk"]
     },
     {
+      "id": "9",
       "description": "Espresso coffee with chocolate syrup, little milk and foam",
       "name": "mocaccino",
       "image": "src/assets/coffee-images/mocaccino.png",
-      "price": "13,90",
+      "price": 13.90,
       "tags": ["traditional", "with milk"]
     },
     {
+      "id": "10",
       "description": "Drink made with chocolate dissolved in hot milk and coffee",
       "name": "hot chocolate",
       "image": "src/assets/coffee-images/hot-chocolate.png",
-      "price": "12,90",
+      "price": 12.90,
       "tags": ["special", "with milk"]
     },
     {
+      "id": "11",
       "description": "Iced espresso drink with rum, sour cream and mint",
       "name": "cuban",
       "image": "src/assets/coffee-images/cuban.png",
-      "price": "14,90",
+      "price": 14.90,
       "tags": ["special", "cold", "with alcohol"]
     },
     {
+      "id": "12",
       "description": "Sweet drink prepared with coffee and coconut milk",
       "name": "hawaiian",
       "image": "src/assets/coffee-images/hawaiian.png",
-      "price": "14,90",
+      "price": 14.90,
       "tags": ["special"]
     },
     {
+      "id": "13",
       "description": "Drink prepared with Arabic coffee beans and spices",
       "name": "arab",
       "image": "src/assets/coffee-images/arab.png",
-      "price": "13,90",
+      "price": 13.90,
       "tags": ["special"]
     },
     {
+      "id": "14",
       "description": "Drink made from coffee, Irish whiskey, sugar and whipped cream",
       "name": "irish",
       "image": "src/assets/coffee-images/irish.png",
-      "price": "15,90",
+      "price": 15.90,
       "tags": ["special", "with alcohol"]
     }
   ]
