@@ -89,7 +89,12 @@ export const PriceContainer = styled.span`
     line-height: 130%;
   }
 `
-export const AddToCartButton = styled.button`
+
+export interface IAddToCartButtonProps {
+  isAddedToCart: boolean
+}
+
+export const AddToCartButton = styled.button<IAddToCartButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,5 +107,13 @@ export const AddToCartButton = styled.button`
   padding: 0.5rem;
   border-radius: 6px;
 
-  background: ${({ theme }) => theme['purple-700']};
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  background: ${({ theme, isAddedToCart }) =>
+    isAddedToCart ? theme['purple-500'] : theme['purple-700']};
+
+  &:hover {
+    background: ${({ theme }) => theme['purple-500']};
+  }
 `
