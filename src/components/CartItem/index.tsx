@@ -8,31 +8,65 @@ import {
   RemoveCoffeeItemButton,
 } from './styles'
 
-import coffeeImage from '../../assets/coffee-images/american.png'
 import { CoffeeQuantityController } from '../CoffeeQuantityController'
 import { Trash } from 'phosphor-react'
 import { defaultTheme } from '../../styles/themes/default'
+import { CoffeeContext, ICartItem } from '../../context/CoffeeContext'
+import { useContext } from 'react'
 
-export function CartItem() {
+interface ICartItemProps extends ICartItem {}
+
+export function CartItem(props: ICartItemProps) {
+  const { updateCartItemQuantity, removeItemFromCart } =
+    useContext(CoffeeContext)
+
+  const { coffee, quantity } = props
+
+  const { image, price, name } = coffee
+
+  const valueFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
+
+  function handleRemoveItemFromCart() {
+    removeItemFromCart(coffee.id)
+  }
+
+  function onIncreaseQuantity() {
+    updateCartItemQuantity(props.coffee.id, quantity + 1)
+  }
+
+  function onDecreaseQuantity() {
+    updateCartItemQuantity(props.coffee.id, quantity - 1)
+  }
+
   return (
     <CartItemContainer>
       <CartItemDetails>
-        <img src={coffeeImage} alt="" />
+        <img src={image} alt="" />
 
         <CoffeeDetailsContainer>
-          <span>Traditional Express</span>
+          <span>{name}</span>
 
           <CoffeeDetailsController>
-            <CoffeeQuantityController />
+            <CoffeeQuantityController
+              quantity={quantity}
+              onIncreaseQuantity={onIncreaseQuantity}
+              onDecreaseQuantity={onDecreaseQuantity}
+            />
 
-            <RemoveCoffeeItemButton type="button">
+            <RemoveCoffeeItemButton
+              type="button"
+              onClick={handleRemoveItemFromCart}
+            >
               <Trash size={16} color={defaultTheme['purple-500']} />
               Remove
             </RemoveCoffeeItemButton>
           </CoffeeDetailsController>
         </CoffeeDetailsContainer>
 
-        <Price>$9,90</Price>
+        <Price>{valueFormatter.format(price)}</Price>
       </CartItemDetails>
 
       <Divisor />

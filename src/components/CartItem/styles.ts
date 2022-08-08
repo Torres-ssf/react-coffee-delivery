@@ -27,6 +27,10 @@ export const CoffeeDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  span {
+    text-transform: capitalize;
+  }
 `
 
 export const CoffeeDetailsController = styled.div`
@@ -51,8 +55,10 @@ export const RemoveCoffeeItemButton = styled.button`
   background: ${({ theme }) => theme['gray-400']};
   cursor: pointer;
 
+  transition: 0.2s ease-in-out;
+
   &:hover {
-    opacity: 0.7;
+    background: ${({ theme }) => theme['gray-500']};
   }
 `
 export const Price = styled.strong`
