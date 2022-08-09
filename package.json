@@ -9,17 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    
+    "@hookform/resolvers": "^2.9.7",
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.34.0",
     "react-router-dom": "^6.3.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.25",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "@vitejs/plugin-react": "^2.0.0",
