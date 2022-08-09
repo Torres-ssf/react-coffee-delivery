@@ -2,21 +2,27 @@ import styled, { css } from 'styled-components'
 
 export const CheckoutContainer = styled.main`
   display: flex;
-  gap: 2rem;
-  margin-top: 2.5rem;
 
-  h2 {
-    margin-bottom: 1rem;
+  form {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
 
-    font-family: 'Baloo 2', cursive;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1.125rem;
-    line-height: 130%;
+    width: 100%;
+
+    h2 {
+      margin-bottom: 1rem;
+
+      font-family: 'Baloo 2', cursive;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 1.125rem;
+      line-height: 130%;
+    }
   }
 `
 
-export const OrderFormContainer = styled.div`
+export const AddressAndPaymentContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1 1 57%;
@@ -28,7 +34,7 @@ export const CartContainer = styled.div`
   flex: 1 1 43%;
 `
 
-export const FormContainer = styled.form`
+export const GrayContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -40,7 +46,7 @@ export const FormContainer = styled.form`
   background: ${({ theme }) => theme['gray-100']};
 `
 
-export const FormHeader = styled.header`
+export const GrayContainerHeader = styled.header`
   display: flex;
   justify-content: start;
   gap: 0.5rem;
@@ -63,18 +69,19 @@ export const FormHeader = styled.header`
   }
 `
 
-export const AddressForm = styled.div`
+export const AddressContainer = styled.div`
   display: grid;
   gap: 1rem;
   grid-template:
-    'zip . .'
-    'street street street'
-    'number complement complement'
-    'count city state' auto / 12.5rem auto 4rem;
+    'street street street street'
+    'number complement complement complement'
+    'city city state state'
+    'zip . . .' auto / 9rem auto auto auto;
 
   width: 100%;
 `
-export const AddressInput = styled.input`
+
+const InputDefaultStyles = css`
   border: none;
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme['gray-400']};
@@ -92,40 +99,45 @@ export const AddressInput = styled.input`
   }
 `
 
-export const AddressInputZipCode = styled(AddressInput)`
+export const AddressInputZipCode = styled.input`
+  ${InputDefaultStyles}
   grid-area: zip;
 `
 
-export const AddressInputStreet = styled(AddressInput)`
+export const AddressInputStreet = styled.input`
+  ${InputDefaultStyles}
   grid-area: street;
 `
 
-export const AddressInputNumber = styled(AddressInput)`
+export const AddressInputNumber = styled.input`
+  ${InputDefaultStyles}
   grid-area: number;
 `
 
-export const AddressInputComplement = styled(AddressInput)`
+export const AddressInputComplement = styled.input`
+  ${InputDefaultStyles}
   grid-area: complement;
 `
 
-export const AddressInputCount = styled(AddressInput)`
-  grid-area: count;
-`
-
-export const AddressInputCity = styled(AddressInput)`
+export const AddressInputCity = styled.input`
+  ${InputDefaultStyles}
   grid-area: city;
 `
 
-export const AddressInputState = styled(AddressInput)`
+export const StateSelect = styled.select`
+  ${InputDefaultStyles}
   grid-area: state;
+
+  &:invalid {
+    color: ${({ theme }) => theme['gray-600']};
+  }
+
+  option {
+    color: ${({ theme }) => theme['gray-700']};
+  }
 `
 
-export const PaymentFormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-export const PaymentInputsContainer = styled.div`
+export const PaymentContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
@@ -177,7 +189,7 @@ export const RadioInputLabel = styled.label<IRadioInputLabelProps>`
   }
 `
 
-export const CartForm = styled.form`
+export const CartForm = styled.div`
   width: 100%;
 
   padding: 2.5rem;

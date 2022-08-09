@@ -1,24 +1,22 @@
 import {
-  AddressForm,
-  FormContainer,
-  FormHeader,
+  AddressContainer,
+  GrayContainer,
+  GrayContainerHeader,
   AddressInputCity,
   AddressInputComplement,
-  AddressInputCount,
   AddressInputNumber,
-  AddressInputState,
   AddressInputStreet,
   AddressInputZipCode,
   CartContainer,
   CheckoutContainer,
-  OrderFormContainer,
-  PaymentInputsContainer,
-  PaymentFormContainer,
+  AddressAndPaymentContainer,
+  PaymentContainer,
   RadioInputLabel,
   CartForm,
   TotalPriceContainer,
   ConfirmOrderButton,
   CartIsEmptyContainer,
+  StateSelect,
 } from './styles'
 
 import {
@@ -29,14 +27,28 @@ import {
   Money,
 } from 'phosphor-react'
 import { defaultTheme } from '../../styles/themes/default'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { CartItem } from '../../components/CartItem'
-import { CoffeeContext } from '../../context/CoffeeContext'
+import { CoffeeContext, IPaymentInfo } from '../../context/CoffeeContext'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { paymentInfoSchema } from '../../utils/yup/schemas'
+import { useNavigate } from 'react-router-dom'
 
 export function Checkout() {
-  const [selectedPayment, setSelectedPayment] = useState('')
+  const {
+    statesNames: states,
+    cart,
+    updatePaymentInfo,
+  } = useContext(CoffeeContext)
+  const navigate = useNavigate()
 
-  const { cart } = useContext(CoffeeContext)
+  const { register, handleSubmit, watch } = useForm<IPaymentInfo>({
+    resolver: yupResolver(paymentInfoSchema),
+    shouldUseNativeValidation: true,
+  })
+
+  const paymentType = watch('paymentType')
 
   const isCartEmpty = cart.length === 0
 
@@ -53,40 +65,71 @@ export function Checkout() {
     currency: 'USD',
   })
 
-  function handleChange(e: any) {
-    setSelectedPayment(e.target.value)
+  function processPayment(data: IPaymentInfo) {
+    updatePaymentInfo(data)
+    navigate('/order-confirmed')
   }
 
   return (
     <CheckoutContainer>
-      <OrderFormContainer>
-        <h2>Complete your order</h2>
+      <form action="" onSubmit={handleSubmit(processPayment)}>
+        <AddressAndPaymentContainer>
+          <h2>Complete your order</h2>
 
-        <FormContainer>
-          <FormHeader>
-            <MapPinLine size={22} color={defaultTheme['yellow-700']} />
-            <div>
-              <span>Delivery address</span>
-              <span>
-                Enter the address where you want to receive your order
-              </span>
-            </div>
-          </FormHeader>
+          <GrayContainer>
+            <GrayContainerHeader>
+              <MapPinLine size={22} color={defaultTheme['yellow-700']} />
+              <div>
+                <span>Delivery address</span>
+                <span>
+                  Enter the address where you want to receive your order
+                </span>
+              </div>
+            </GrayContainerHeader>
 
-          <AddressForm>
-            <AddressInputZipCode type="number" placeholder="Zip Code" />
-            <AddressInputStreet type="text" placeholder="Street" />
-            <AddressInputNumber type="number" placeholder="Number" min={1} />
-            <AddressInputComplement type="text" placeholder="Complement" />
-            <AddressInputCount type="text" placeholder="Count" />
-            <AddressInputCity type="text" placeholder="City" />
-            <AddressInputState type="text" placeholder="State" />
-          </AddressForm>
-        </FormContainer>
+            <AddressContainer>
+              <AddressInputZipCode
+                type="number"
+                placeholder="Zip Code"
+                {...register('zip', { valueAsNumber: true })}
+              />
+              <AddressInputStreet
+                type="text"
+                placeholder="Street"
+                {...register('street')}
+              />
+              <AddressInputNumber
+                type="number"
+                placeholder="Number"
+                min={1}
+                {...register('number')}
+              />
+              <AddressInputComplement
+                type="text"
+                placeholder="Complement (optional)"
+                {...register('complement')}
+              />
+              <AddressInputCity
+                type="text"
+                placeholder="City"
+                {...register('city')}
+              />
+              <StateSelect {...register('state')} defaultValue="">
+                default
+                <option value="" disabled hidden>
+                  Select your State
+                </option>
+                {states.map(state => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </StateSelect>
+            </AddressContainer>
+          </GrayContainer>
 
-        <FormContainer>
-          <PaymentFormContainer>
-            <FormHeader>
+          <GrayContainer>
+            <GrayContainerHeader>
               <CurrencyDollar size={22} color={defaultTheme['purple-500']} />
               <div>
                 <span>Payment</span>
@@ -95,79 +138,76 @@ export function Checkout() {
                   order
                 </span>
               </div>
-            </FormHeader>
+            </GrayContainerHeader>
 
-            <PaymentInputsContainer>
-              <RadioInputLabel isChecked={/credit-card/.test(selectedPayment)}>
+            <PaymentContainer>
+              <RadioInputLabel isChecked={/credit-card/.test(paymentType)}>
                 <input
                   type="radio"
-                  name="payment-type"
-                  onChange={handleChange}
                   value="credit-card"
+                  {...register('paymentType')}
                 />
                 <CreditCard size={16} color={defaultTheme['purple-500']} />
                 credit card
               </RadioInputLabel>
 
-              <RadioInputLabel isChecked={/debit-card/.test(selectedPayment)}>
+              <RadioInputLabel isChecked={/debit-card/.test(paymentType)}>
                 <input
                   type="radio"
-                  name="payment-type"
-                  onChange={handleChange}
                   value="debit-card"
+                  {...register('paymentType')}
                 />
                 <Bank size={16} color={defaultTheme['purple-500']} />
                 debit card
               </RadioInputLabel>
 
-              <RadioInputLabel isChecked={/money/.test(selectedPayment)}>
+              <RadioInputLabel isChecked={/money/.test(paymentType)}>
                 <input
                   type="radio"
-                  name="payment-type"
-                  onChange={handleChange}
                   value="money"
+                  {...register('paymentType')}
                 />
                 <Money size={16} color={defaultTheme['purple-500']} />
                 money
               </RadioInputLabel>
-            </PaymentInputsContainer>
-          </PaymentFormContainer>
-        </FormContainer>
-      </OrderFormContainer>
+            </PaymentContainer>
+          </GrayContainer>
+        </AddressAndPaymentContainer>
 
-      <CartContainer>
-        <h2>Selected Coffees</h2>
-        <CartForm>
-          {cart.map(item => (
-            <CartItem key={item.coffee.id} {...item} />
-          ))}
+        <CartContainer>
+          <h2>Selected Coffees</h2>
+          <CartForm>
+            {cart.map(item => (
+              <CartItem key={item.coffee.id} {...item} />
+            ))}
 
-          <TotalPriceContainer>
-            {!isCartEmpty ? (
-              <>
-                <div>
-                  <span>Total in items</span>
-                  <span>{valueFormatter.format(totalInItems)}</span>
-                </div>
-                <div>
-                  <span>Delivery</span>
-                  <span>{valueFormatter.format(deliveryPrice)}</span>
-                </div>
-                <div>
-                  <strong>Total</strong>
-                  <strong>{valueFormatter.format(totalPrice)}</strong>
-                </div>
-              </>
-            ) : (
-              <CartIsEmptyContainer>Your cart is empty</CartIsEmptyContainer>
-            )}
-          </TotalPriceContainer>
+            <TotalPriceContainer>
+              {!isCartEmpty ? (
+                <>
+                  <div>
+                    <span>Total in items</span>
+                    <span>{valueFormatter.format(totalInItems)}</span>
+                  </div>
+                  <div>
+                    <span>Delivery</span>
+                    <span>{valueFormatter.format(deliveryPrice)}</span>
+                  </div>
+                  <div>
+                    <strong>Total</strong>
+                    <strong>{valueFormatter.format(totalPrice)}</strong>
+                  </div>
+                </>
+              ) : (
+                <CartIsEmptyContainer>Your cart is empty</CartIsEmptyContainer>
+              )}
+            </TotalPriceContainer>
 
-          <ConfirmOrderButton disabled={isCartEmpty} type="button">
-            Confirm Order
-          </ConfirmOrderButton>
-        </CartForm>
-      </CartContainer>
+            <ConfirmOrderButton disabled={isCartEmpty} type="submit">
+              Confirm Order
+            </ConfirmOrderButton>
+          </CartForm>
+        </CartContainer>
+      </form>
     </CheckoutContainer>
   )
 }
