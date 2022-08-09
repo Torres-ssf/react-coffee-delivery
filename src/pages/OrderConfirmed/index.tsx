@@ -10,8 +10,12 @@ import {
 } from './styles'
 
 import deliveryImage from '../../assets/delivery-Illustration.png'
+import { useContext } from 'react'
+import { CoffeeContext } from '../../context/CoffeeContext'
 
 export const OrderConfirmed = () => {
+  const { paymentInfo } = useContext(CoffeeContext)
+
   return (
     <OrderConfirmedContainer>
       <h1>Woo! Order Confirmed</h1>
@@ -26,9 +30,14 @@ export const OrderConfirmed = () => {
 
             <div>
               <span>
-                Delivery at <strong>John Daniel street, 102</strong>
+                Delivery at{' '}
+                <strong>
+                  {paymentInfo!.street}, {paymentInfo!.number}
+                </strong>
               </span>
-              <span>Farrapos - Porto Alegre, RS</span>
+              <span>
+                {paymentInfo!.city}, {paymentInfo!.state}
+              </span>
             </div>
           </UserDetailsInfoContainer>
 
@@ -57,7 +66,7 @@ export const OrderConfirmed = () => {
             <div>
               <span>Payment on delivery</span>
               <span>
-                <strong>credit card</strong>
+                <strong>{paymentInfo!.paymentType}</strong>
               </span>
             </div>
           </UserDetailsInfoContainer>
