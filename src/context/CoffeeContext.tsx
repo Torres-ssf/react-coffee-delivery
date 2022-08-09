@@ -16,12 +16,25 @@ export interface ICartItem {
   quantity: number
 }
 
+export interface IPaymentInfo {
+  street: string
+  number: number
+  city: string
+  state: string
+  zip: number
+  complement?: string
+  paymentType: 'credit-card' | 'debit-card' | 'money'
+}
+
 export interface ICoffeeContextProps {
   coffees: ICoffee[]
   cart: ICartItem[]
+  statesNames: string[]
+  paymentInfo?: IPaymentInfo
   addItemToCart: (coffee: ICoffee, quantity: number) => void
   removeItemFromCart: (coffeeId: string) => void
   updateCartItemQuantity: (coffeeId: string, quantity: number) => void
+  updatePaymentInfo: (address: IPaymentInfo) => void
 }
 
 export const CoffeeContext = createContext<ICoffeeContextProps>(
@@ -30,8 +43,11 @@ export const CoffeeContext = createContext<ICoffeeContextProps>(
 
 export function CoffeeContextProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<ICartItem[]>([])
+  const [paymentInfo, setPaymentInfo] = useState<IPaymentInfo | undefined>(
+    undefined
+  )
 
-  const { coffees } = db
+  const { coffees, statesNames } = db
 
   function addItemToCart(coffee: ICoffee, quantity: number) {
     const coffeeIndex = cart.findIndex(cartItem => {
@@ -82,12 +98,19 @@ export function CoffeeContextProvider({ children }: { children: ReactNode }) {
     })
   }
 
+  function updatePaymentInfo(address: IPaymentInfo) {
+    setPaymentInfo(address)
+  }
+
   return (
     <CoffeeContext.Provider
       value={{
         cart,
         coffees,
         addItemToCart,
+        statesNames,
+        paymentInfo,
+        updatePaymentInfo,
         removeItemFromCart,
         updateCartItemQuantity,
       }}
