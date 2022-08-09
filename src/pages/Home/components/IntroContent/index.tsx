@@ -6,8 +6,8 @@ import {
   IntroContentContainer,
 } from './styles'
 
-import imageCoffee from '../../assets/coffee-main-image.svg'
-import { defaultTheme } from '../../styles/themes/default'
+import imageCoffee from '../../../../assets/coffee-main-image.svg'
+import { defaultTheme } from '../../../../styles/themes/default'
 
 export function IntroContent() {
   return (

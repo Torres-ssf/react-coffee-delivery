@@ -8,10 +8,10 @@ import {
   RemoveCoffeeItemButton,
 } from './styles'
 
-import { CoffeeQuantityController } from '../CoffeeQuantityController'
+import { CoffeeQuantityController } from '../../../../components/CoffeeQuantityController'
 import { Trash } from 'phosphor-react'
-import { defaultTheme } from '../../styles/themes/default'
-import { CoffeeContext, ICartItem } from '../../context/CoffeeContext'
+import { defaultTheme } from '../../../../styles/themes/default'
+import { CoffeeContext, ICartItem } from '../../../../context/CoffeeContext'
 import { useContext } from 'react'
 
 interface ICartItemProps extends ICartItem {}

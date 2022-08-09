@@ -1,5 +1,5 @@
-import { CoffeeItem } from '../../components/CoffeeItem'
-import { IntroContent } from '../../components/IntroContent'
+import { CoffeeItem } from './components/CoffeeItem'
+import { IntroContent } from './components/IntroContent'
 import { CoffeeList, HomeContainer } from './styles'
 
 import { useContext } from 'react'

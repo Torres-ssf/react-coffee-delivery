@@ -9,9 +9,9 @@ import {
 } from './styles'
 
 import { ShoppingCart } from 'phosphor-react'
-import { defaultTheme } from '../../styles/themes/default'
-import { CoffeeQuantityController } from '../CoffeeQuantityController'
-import { CoffeeContext, ICoffee } from '../../context/CoffeeContext'
+import { defaultTheme } from '../../../../styles/themes/default'
+import { CoffeeQuantityController } from '../../../../components/CoffeeQuantityController'
+import { CoffeeContext, ICoffee } from '../../../../context/CoffeeContext'
 import { useContext, useState } from 'react'
 
 export interface ICoffeeItemProps extends ICoffee {}

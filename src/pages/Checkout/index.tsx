@@ -28,7 +28,7 @@ import {
 } from 'phosphor-react'
 import { defaultTheme } from '../../styles/themes/default'
 import { useContext } from 'react'
-import { CartItem } from '../../components/CartItem'
+import { CartItem } from './components/CartItem'
 import { CoffeeContext, IPaymentInfo } from '../../context/CoffeeContext'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
