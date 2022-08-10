@@ -36,11 +36,8 @@ import { paymentInfoSchema } from '../../utils/yup/schemas'
 import { useNavigate } from 'react-router-dom'
 
 export function Checkout() {
-  const {
-    statesNames: states,
-    cart,
-    updatePaymentInfo,
-  } = useContext(AppContext)
+  const { cart, updatePaymentInfo, statesNames, emptyCart } =
+    useContext(AppContext)
   const navigate = useNavigate()
 
   const { register, handleSubmit, watch } = useForm<IPaymentInfo>({
@@ -67,6 +64,7 @@ export function Checkout() {
 
   function processPayment(data: IPaymentInfo) {
     updatePaymentInfo(data)
+    emptyCart()
     navigate('/order-confirmed')
   }
 
@@ -119,7 +117,7 @@ export function Checkout() {
                 <option value="" disabled hidden>
                   Select your State
                 </option>
-                {states.map(state => (
+                {statesNames.map(state => (
                   <option key={state} value={state}>
                     {state}
                   </option>
