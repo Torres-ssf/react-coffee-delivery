@@ -4,6 +4,10 @@ export const IntroContentContainer = styled.section`
   display: flex;
   padding: 5.75rem 0;
   gap: 3.5rem;
+
+  @media (max-width: 1080px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const HeaderContainer = styled.div`
@@ -31,15 +35,56 @@ export const HeaderContainer = styled.div`
 
     color: ${({ theme }) => theme['gray-800']};
   }
+
+  @media (max-width: 1280px) {
+    width: 46%;
+
+    h1 {
+      font-size: 2.6rem;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    width: 42%;
+  }
+
+  @media (max-width: 1080px) {
+    width: 100%;
+  }
 `
 
 export const ImageContainer = styled.div`
   display: flex;
-  width: 48%;
+  justify-content: center;
+  flex: 1;
 
   img {
     width: 100%;
     height: 100%;
+  }
+
+  @media (max-width: 1080px) {
+    img {
+      max-width: 70%;
+    }
+  }
+
+  @media (max-width: 960px) {
+    img {
+      max-width: 80%;
+    }
+  }
+
+  @media (max-width: 780px) {
+    img {
+      max-width: 90%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    img {
+      max-width: 100%;
+    }
   }
 `
 

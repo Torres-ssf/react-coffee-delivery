@@ -21,6 +21,10 @@ export const CartItemDetails = styled.div`
     height: 4rem;
     width: 4rem;
   }
+
+  @media (max-width: 520px) {
+    width: unset;
+  }
 `
 
 export const CoffeeDetailsContainer = styled.div`

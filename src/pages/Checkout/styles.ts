@@ -19,6 +19,10 @@ export const CheckoutContainer = styled.main`
       font-size: 1.125rem;
       line-height: 130%;
     }
+
+    @media (max-width: 1100px) {
+      flex-wrap: wrap;
+    }
   }
 `
 
@@ -26,12 +30,26 @@ export const AddressAndPaymentContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1 1 57%;
+
+  @media (max-width: 1100px) {
+    flex: 1;
+  }
 `
 
 export const CartContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1 1 43%;
+
+  min-width: 28rem;
+
+  @media (max-width: 1100px) {
+    flex: 1;
+
+    min-width: unset;
+
+    margin-bottom: 2rem;
+  }
 `
 
 export const GrayContainer = styled.div`
@@ -141,6 +159,10 @@ export const PaymentContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
+
+  @media (max-width: 660px) {
+    flex-direction: column;
+  }
 `
 
 interface IRadioInputLabelProps {

@@ -3,12 +3,20 @@ import styled from 'styled-components'
 export const DefaultLayoutContainer = styled.div`
   max-width: 90rem;
   margin: 0 auto;
-  padding: 0 10rem;
 
-  @media (max-width: 1480px) {
-    padding: 0 5rem;
-  }
-  @media (max-width: 1366px) {
+  @media (max-width: 1660px) {
     padding: 0 2rem;
+  }
+
+  @media (max-width: 1560px) {
+    padding: 0 4rem;
+  }
+
+  @media (max-width: 960px) {
+    padding: 0 2rem;
+  }
+
+  @media (max-width: 640px) {
+    padding: 0 1rem;
   }
 `

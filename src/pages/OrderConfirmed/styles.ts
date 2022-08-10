@@ -20,11 +20,25 @@ export const OrderConfirmedContainer = styled.main`
     font-size: 1.25rem;
     line-height: 1.625rem;
   }
+
+  @media (max-width: 1020px) {
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+  }
 `
 
 export const InnerContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
+
+  @media (max-width: 1020px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
 `
 
 export const UserInfo = styled.div`
@@ -41,6 +55,10 @@ export const UserInfo = styled.div`
 
   margin-top: 2.5rem;
   width: 32.875rem;
+
+  @media (max-width: 660px) {
+    width: 100%;
+  }
 `
 
 export const UserDetailsInfoContainer = styled.div`
@@ -78,6 +96,7 @@ export const IconConatiner = styled.span<IconContainerProps>`
 `
 
 export const DeliveryIlustration = styled.img`
-  align-self: flex-end;
-  justify-self: flex-end;
+  @media (max-width: 660px) {
+    width: 100%;
+  }
 `
