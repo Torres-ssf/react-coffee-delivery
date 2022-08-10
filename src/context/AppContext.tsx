@@ -1,8 +1,15 @@
-import { createContext, ReactNode, useReducer, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 
 import db from '../../db.json'
 import {
   addItemToCartAction,
+  emptyCartAction,
   removeItemFromCartAction,
   updateCartItemQuantityAction,
 } from '../reducers/cart/actions'
@@ -40,6 +47,7 @@ export interface IAppContextProps {
   addItemToCart: (coffee: ICoffee, quantity: number) => void
   removeItemFromCart: (coffeeId: string) => void
   updateCartItemQuantity: (coffeeId: string, quantity: number) => void
+  emptyCart: () => void
   updatePaymentInfo: (address: IPaymentInfo) => void
 }
 
@@ -54,6 +62,14 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
       cart: [],
     },
     (initialState: ICartState) => {
+      const stateJson = localStorage.getItem(
+        import.meta.env.VITE_CART_STORAGE_KEY
+      )
+
+      if (stateJson) {
+        return JSON.parse(stateJson)
+      }
+
       return initialState
     }
   )
@@ -61,6 +77,12 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
   const [paymentInfo, setPaymentInfo] = useState<IPaymentInfo | undefined>(
     undefined
   )
+
+  useEffect(() => {
+    const stateJson = JSON.stringify(state)
+
+    localStorage.setItem(import.meta.env.VITE_CART_STORAGE_KEY, stateJson)
+  }, [state])
 
   const { coffees, statesNames } = db
 
@@ -78,6 +100,10 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
     dispatch(updateCartItemQuantityAction(coffeeId, quantity))
   }
 
+  function emptyCart() {
+    dispatch(emptyCartAction())
+  }
+
   function updatePaymentInfo(address: IPaymentInfo) {
     setPaymentInfo(address)
   }
@@ -92,6 +118,7 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
         paymentInfo,
         updatePaymentInfo,
         removeItemFromCart,
+        emptyCart,
         updateCartItemQuantity,
       }}
     >
