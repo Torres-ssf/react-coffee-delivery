@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react'
 
-import db from '../../db.json'
+import db from '../database/coffee-db.json'
 import {
   addItemToCartAction,
   emptyCartAction,
