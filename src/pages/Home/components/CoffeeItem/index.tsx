@@ -13,6 +13,7 @@ import { defaultTheme } from '../../../../styles/themes/default'
 import { CoffeeQuantityController } from '../../../../components/CoffeeQuantityController'
 import { AppContext, ICoffee } from '../../../../context/AppContext'
 import { useContext, useState } from 'react'
+import { imageMapper } from '../../../../utils/mappers'
 
 export interface ICoffeeItemProps extends ICoffee {}
 
@@ -61,7 +62,7 @@ export function CoffeeItem(props: ICoffeeItemProps) {
 
   return (
     <CoffeeItemContainer>
-      <CoffeeImage src={image} alt={`${name} image`} />
+      <CoffeeImage src={imageMapper[image]} alt={`${name} image`} />
 
       <CoffeeTagsList>
         {tags.map(tag => (
