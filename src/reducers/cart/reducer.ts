@@ -54,7 +54,11 @@ export function cartReducer(
           return item
         }),
       }
-  }
 
-  return state
+    case CartReducerActionsEnum.EMPTY_CART:
+      return { cart: [] }
+
+    default:
+      return state
+  }
 }
