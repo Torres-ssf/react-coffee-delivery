@@ -11,14 +11,14 @@ import {
 import { ShoppingCart } from 'phosphor-react'
 import { defaultTheme } from '../../../../styles/themes/default'
 import { CoffeeQuantityController } from '../../../../components/CoffeeQuantityController'
-import { CoffeeContext, ICoffee } from '../../../../context/CoffeeContext'
+import { AppContext, ICoffee } from '../../../../context/AppContext'
 import { useContext, useState } from 'react'
 
 export interface ICoffeeItemProps extends ICoffee {}
 
 export function CoffeeItem(props: ICoffeeItemProps) {
   const { cart, addItemToCart, updateCartItemQuantity, removeItemFromCart } =
-    useContext(CoffeeContext)
+    useContext(AppContext)
 
   const { image, name, tags, description, price } = props
 
@@ -27,7 +27,7 @@ export function CoffeeItem(props: ICoffeeItemProps) {
   const [quantity, setQuantity] = useState(isCoffeeOnCart?.quantity || 0)
 
   function handleAddToCart() {
-    if (quantity > 0) {
+    if (quantity > 0 && !isCoffeeOnCart) {
       addItemToCart(props, quantity)
     }
   }

@@ -3,10 +3,10 @@ import { IntroContent } from './components/IntroContent'
 import { CoffeeList, HomeContainer } from './styles'
 
 import { useContext } from 'react'
-import { CoffeeContext } from '../../context/CoffeeContext'
+import { AppContext } from '../../context/AppContext'
 
 export function Home() {
-  const { coffees } = useContext(CoffeeContext)
+  const { coffees } = useContext(AppContext)
 
   return (
     <HomeContainer>

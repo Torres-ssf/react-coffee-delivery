@@ -1,13 +1,13 @@
 import { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { CoffeeContext } from './context/CoffeeContext'
+import { AppContext } from './context/AppContext'
 import { DefaultLayout } from './layouts/DefaultLayout'
 import { Checkout } from './pages/Checkout'
 import { Home } from './pages/Home'
 import { OrderConfirmed } from './pages/OrderConfirmed'
 
 export function Router() {
-  const { paymentInfo } = useContext(CoffeeContext)
+  const { paymentInfo } = useContext(AppContext)
 
   return (
     <Routes>

@@ -11,14 +11,14 @@ import {
 import { CoffeeQuantityController } from '../../../../components/CoffeeQuantityController'
 import { Trash } from 'phosphor-react'
 import { defaultTheme } from '../../../../styles/themes/default'
-import { CoffeeContext, ICartItem } from '../../../../context/CoffeeContext'
+import { AppContext, ICartItem } from '../../../../context/AppContext'
 import { useContext } from 'react'
 
 interface ICartItemProps extends ICartItem {}
 
 export function CartItem(props: ICartItemProps) {
   const { updateCartItemQuantity, removeItemFromCart } =
-    useContext(CoffeeContext)
+    useContext(AppContext)
 
   const { coffee, quantity } = props
 

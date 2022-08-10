@@ -11,10 +11,10 @@ import {
 
 import deliveryImage from '../../assets/delivery-Illustration.png'
 import { useContext } from 'react'
-import { CoffeeContext } from '../../context/CoffeeContext'
+import { AppContext } from '../../context/AppContext'
 
 export const OrderConfirmed = () => {
-  const { paymentInfo } = useContext(CoffeeContext)
+  const { paymentInfo } = useContext(AppContext)
 
   return (
     <OrderConfirmedContainer>

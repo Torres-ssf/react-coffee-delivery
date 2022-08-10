@@ -1,5 +1,5 @@
 import * as yup from 'yup'
-import { IPaymentInfo } from '../../context/CoffeeContext'
+import { IPaymentInfo } from '../../context/AppContext'
 
 export const paymentInfoSchema: yup.SchemaOf<IPaymentInfo> = yup
   .object()

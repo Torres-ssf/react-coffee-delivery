@@ -9,10 +9,10 @@ import { MapPin, ShoppingCart } from 'phosphor-react'
 import logo from '../../assets/logo.svg'
 import { defaultTheme } from '../../styles/themes/default'
 import { useContext } from 'react'
-import { CoffeeContext } from '../../context/CoffeeContext'
+import { AppContext } from '../../context/AppContext'
 
 export function Header() {
-  const { cart } = useContext(CoffeeContext)
+  const { cart } = useContext(AppContext)
 
   const itemsCount = cart.reduce((acc, { quantity }) => acc + quantity, 0)
 

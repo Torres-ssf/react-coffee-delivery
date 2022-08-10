@@ -29,7 +29,7 @@ import {
 import { defaultTheme } from '../../styles/themes/default'
 import { useContext } from 'react'
 import { CartItem } from './components/CartItem'
-import { CoffeeContext, IPaymentInfo } from '../../context/CoffeeContext'
+import { AppContext, IPaymentInfo } from '../../context/AppContext'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { paymentInfoSchema } from '../../utils/yup/schemas'
@@ -40,7 +40,7 @@ export function Checkout() {
     statesNames: states,
     cart,
     updatePaymentInfo,
-  } = useContext(CoffeeContext)
+  } = useContext(AppContext)
   const navigate = useNavigate()
 
   const { register, handleSubmit, watch } = useForm<IPaymentInfo>({
