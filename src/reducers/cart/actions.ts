@@ -4,6 +4,7 @@ export enum CartReducerActionsEnum {
   ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART',
   REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART',
   UPDATE_CART_ITEM_QUANTITY = 'UPDATE_CART_ITEM_QUANTITY',
+  EMPTY_CART = 'EMPTY_CART',
 }
 
 export function addItemToCartAction(coffee: ICoffee, quantity: number) {
@@ -35,5 +36,11 @@ export function updateCartItemQuantityAction(
       coffeeId,
       quantity,
     },
+  }
+}
+
+export function emptyCartAction() {
+  return {
+    type: CartReducerActionsEnum.EMPTY_CART,
   }
 }
