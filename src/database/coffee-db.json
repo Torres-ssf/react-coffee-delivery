@@ -20,7 +20,7 @@
       "id": "3",
       "description": "Traditional espresso with creamy foam",
       "name": "creamy espresso",
-      "image": "creamy-espresso",
+      "image": "creamyEspresso",
       "price": 11.90,
       "tags": ["traditional"]
     },
@@ -28,7 +28,7 @@
       "id": "4",
       "description": "Prepared with espresso coffee and ice cubes",
       "name": "iced espresso",
-      "image": "iced-espresso",
+      "image": "icedEspresso",
       "price": 10.90,
       "tags": ["traditional", "cold"]
     },
@@ -36,7 +36,7 @@
       "id": "5",
       "description": "Half traditional and half espresso with steamed milk",
       "name": "coffee with milk",
-      "image": "coffee-with-milk",
+      "image": "coffeeWithMilk",
       "price": 9.90,
       "tags": ["traditional", "with milk"]
     },
@@ -76,7 +76,7 @@
       "id": "10",
       "description": "Drink made with chocolate dissolved in hot milk and coffee",
       "name": "hot chocolate",
-      "image": "hot-chocolate",
+      "image": "hotChocolate",
       "price": 12.90,
       "tags": ["special", "with milk"]
     },
