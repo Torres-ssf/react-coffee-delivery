@@ -13,6 +13,12 @@ import deliveryImage from '../../assets/delivery-Illustration.png'
 import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
 
+const paymentTypesMapper = {
+  'credit-card': 'Credit Card',
+  'debit-card': 'Debit Card',
+  money: 'Money',
+}
+
 export const OrderConfirmed = () => {
   const { paymentInfo } = useContext(AppContext)
 
@@ -66,7 +72,7 @@ export const OrderConfirmed = () => {
             <div>
               <span>Payment on delivery</span>
               <span>
-                <strong>{paymentInfo!.paymentType}</strong>
+                <strong>{paymentTypesMapper[paymentInfo!.paymentType]}</strong>
               </span>
             </div>
           </UserDetailsInfoContainer>
